@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import { Route } from 'react-router-dom';
 import CookieUtils from './Utils/Cookies';
 import Featured from './Pages/Featured/Featured';
@@ -22,7 +22,7 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className='bodyWrapper mx-auto'>
         <Route path="/" exact render={(props) =>
           <Home {...props} />
         } />
@@ -33,7 +33,7 @@ export default class App extends React.Component {
           <Featured {...props} />
         } />
         <Route path="/watchlist" exact render={(props) =>
-          <Watchlist {...props} />
+          <Watchlist  {...props} />
         } />
       </div>
     )

@@ -1,5 +1,21 @@
-.App {
-  text-align: center;
+@import './Styles/Globals.scss';
+
+html, body {
+  width: 100%!important;
+  height: 100%!important;
+  background-color: $colorBackgroundPrimary!important;
+}
+
+h1, h2, h3 {
+  color: $colorPrimary
+}
+
+p {
+  color: $colorSecondary
+}
+
+.bodyWrapper {
+  width: 80%;
 }
 
 .App-logo {
