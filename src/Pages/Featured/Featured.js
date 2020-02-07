@@ -49,9 +49,10 @@ export default class Featured extends React.Component {
   }
 
   buildMovieCards = () => {
-    let movies = _.map(this.state.featuredMovies, movie => {
+    let movies = _.map(this.state.featuredMovies, (movie, index) => {
       return (
         <MovieCard
+          key={index}
           poster={"https://image.tmdb.org/t/p/w600_and_h900_bestv2" + movie.poster_path}
           title={movie.title}
           overview={movie.overview}

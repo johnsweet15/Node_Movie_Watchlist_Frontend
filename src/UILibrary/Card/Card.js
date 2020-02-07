@@ -5,18 +5,18 @@ import './Card.scss'
 
 export default function MovieCard(props) {
   return (
-    <Card className="cardBody my-3 p-3">
+    <Card className="cardBody my-3 p-3" key={props.key}>
       <Row>
-        <Col lg={2} className="mb-3">
+        <Col lg={2} className="my-2">
           <img className="mw-100" alt="movie_poster" src={props.poster} />
         </Col>
-        <Col lg={10} className="mb-3">
-          <React.Fragment className="m-3">
+        <Col lg={10} className="my-2">
+          <div className="m-3">
             <h3>{props.title}</h3>
             <p>{props.overview}</p>
-            <Button onClick={props.onClickAdd}>Add</Button>
-            <Button onClick={props.onClickRemove}>Remove</Button>
-          </React.Fragment>
+            {props.onClickAdd && <Button onClick={props.onClickAdd}>Add to Watchlist</Button>}
+            {props.onClickRemove && <Button onClick={props.onClickRemove}>Remove</Button>}
+          </div>
         </Col>
       </Row>
     </Card>

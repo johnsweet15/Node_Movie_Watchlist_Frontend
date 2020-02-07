@@ -38,6 +38,7 @@ export default class Watchlist extends React.Component {
     let movies = _.map(this.state.watchlist, (movie, index) => {
       return (
         <MovieCard
+          key={index}
           poster={"https://image.tmdb.org/t/p/w600_and_h900_bestv2" + movie.poster_path}
           title={movie.title}
           overview={movie.overview}
