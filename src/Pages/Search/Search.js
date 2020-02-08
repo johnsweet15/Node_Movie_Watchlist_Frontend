@@ -1,9 +1,6 @@
 import React from 'react'
-import MovieCard from '../../UILibrary/Card/Card'
-import WatchlistService from '../../Services/WatchlistService'
 import MovieDBService from '../../Services/MovieDBService'
-import CookieUtils from '../../Utils/Cookies'
-import _ from 'lodash'
+import LayoutUtils from '../../Utils/Layout'
 
 export default class Search extends React.Component {
 
@@ -35,38 +32,12 @@ export default class Search extends React.Component {
   getSearchedMovies = async (search, pageCount) => {
     if(pageCount <= 5) {
       let searchList = []
-      for(var i = 1; i <= pageCount; i++) {
-        let response = await MovieDBService.getSearchedMovies(search)
+      for(var i = pageCount; i > 0; i--) {
+        let response = await MovieDBService.getSearchedMovies(search, i)
         searchList = response.data.results.concat(searchList)
       }
       this.setState({searchedMovies: searchList})
     }
-  }
-
-  async addMovieToWatchlist(movie) {
-    let jwt = CookieUtils.getCookie("jwt")
-    let movieObj = {
-      id: movie.id,
-      title: movie.title,
-      overview: movie.overview,
-      poster_path: movie.poster_path
-    }
-    let response = await WatchlistService.addMovie(movieObj, { headers: { "auth-token": jwt } })
-    console.log(response)
-  }
-
-  buildMovieCards = () => {
-    let movies = _.map(this.state.searchedMovies, (movie, index) => {
-      return (
-        <MovieCard
-          key={index}
-          poster={"https://image.tmdb.org/t/p/w600_and_h900_bestv2" + movie.poster_path}
-          title={movie.title}
-          overview={movie.overview}
-          onClickAdd={() => this.addMovieToWatchlist(movie)} />
-      )
-    })
-    return movies
   }
 
   render() {
@@ -74,7 +45,7 @@ export default class Search extends React.Component {
       <div>
         <h1>Search</h1>
         {this.state.searchedMovies.length > 0 &&
-          <div>{this.buildMovieCards()}</div>
+          <div>{LayoutUtils.buildMovieCards(this.state.searchedMovies, "searched")}</div>
         }
       </div>
     )

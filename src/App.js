@@ -9,6 +9,7 @@ import Home from './Pages/Home/Home';
 import Watchlist from './Pages/Watchlist/Watchlist';
 import MovieNavbar from './UILibrary/Navbar/Navbar';
 import Search from './Pages/Search/Search';
+import Details from './Pages/Details/Details';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -35,11 +36,6 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <Route render={(props) =>
-            <MovieNavbar {...props}
-              isLoggedIn={this.state.isLoggedIn}
-              profile={this.state.profile} />
-          } /> */}
         <MovieNavbar {...this.props} isLoggedIn={this.state.isLoggedIn} profile={this.state.profile} />
         <div className='bodyWrapper mx-auto'>
 
@@ -59,6 +55,9 @@ export default class App extends React.Component {
           } />
           <Route path="/search" exact render={(props) =>
             <Search  {...props} />
+          } />
+          <Route path="/details" exact render={(props) =>
+            <Details  {...props} />
           } />
         </div>
       </div>
