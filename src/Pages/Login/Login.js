@@ -23,8 +23,9 @@ export default class Login extends React.Component {
     })
     if(response.data.success) {
       CookieUtils.setCookie("jwt", response.data.token)
-      sessionStorage.setItem('userId', response.data._id)
+      CookieUtils.setCookie('userId', response.data._id)
       this.props.history.push('/')
+      window.location.reload()
     }
   }
 

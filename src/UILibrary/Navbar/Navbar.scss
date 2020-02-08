@@ -1,0 +1,15 @@
+@import '../../Styles/Globals.scss';
+
+
+.navBody {
+  background-color: $colorBackgroundNav;
+  color: $colorSecondary!important;
+
+  .navbar-brand {
+    color: $colorPrimary!important;
+  }
+
+  .nav-link {
+    color: $colorSecondary!important;
+  }
+}
